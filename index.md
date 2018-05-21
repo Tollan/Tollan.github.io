@@ -1,3 +1,2 @@
-### Markdown
 
 {% include /flowers.html %}
