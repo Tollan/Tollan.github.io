@@ -26,6 +26,7 @@ function importData() {
         fomc_calendar = data;
         
         source.data.date = fomc_calendar.map(function(row,i) { return row.date; });
+	source.data.date_string = fomc_calendar.map(function(row,i) { return row.date.toDateString(); });
         source.data.days_before = fomc_calendar.map(function(row,i) { return row.days_before; });
         source.data.days_since = fomc_calendar.map(function(row,i) { return row.days_since; });
         source.change.emit();
@@ -34,10 +35,10 @@ function importData() {
 importData();	
 	
 var source = new Bokeh.ColumnDataSource({
-	data: { date: [], days_before: [], days_since: [] }
+	//data: { date: [], days_before: [], days_since: [] }
 });
 var columns = [
-	new Bokeh.Tables.TableColumn({ field: "date", title: "date" }), //formatter: Bokeh.Tables.DateFormatter()}),
+	new Bokeh.Tables.TableColumn({ field: "date_string", title: "date" }), //formatter: Bokeh.Tables.DateFormatter()}),
 	new Bokeh.Tables.TableColumn({ field: "days_before", title: "days_before" }),
 	new Bokeh.Tables.TableColumn({ field: "days_since", title: "days_since" })
 ]    
@@ -56,7 +57,8 @@ function handler() {
 }
 	
 function refresh() {
-	source.selected.indices[0] = source.data.date.findIndex(function(element) { return (new Date(element)).toDateString() === select.value; });
+	//source.selected.indices[0] = source.data.date.findIndex(function(element) { return (new Date(element)).toDateString() === select.value; });
+	source.selected.indices[0] = source.data.date.findIndex(function(element) { return element === select.value; });
 	source.selected.change.emit();
 }
    
