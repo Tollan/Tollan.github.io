@@ -18,7 +18,7 @@
 function importData() {
 	d3.csv("https://raw.githubusercontent.com/Tollan/fomc/master/fomc_calendar.csv", function(csv) { 
 		return { 
-			date: new Date(csv.date), 
+			date: new Date(csv.date.split('-')[0], csv.date.split('-')[1] - 1, csv.date.split('-')[2], 1), 
 			days_before: +csv.days_before,
 			days_since: +csv.days_since  
 		};
