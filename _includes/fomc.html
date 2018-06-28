@@ -58,7 +58,7 @@ function handler() {
 	
 function refresh() {
 	//source.selected.indices[0] = source.data.date.findIndex(function(element) { return (new Date(element)).toDateString() === select.value; });
-	source.selected.indices[0] = source.data.date.findIndex(function(element) { return element === select.value; });
+	source.selected.indices[0] = source.data.date_string.findIndex(function(element) { return element === select.value; });
 	source.selected.change.emit();
 }
    
